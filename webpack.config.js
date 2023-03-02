@@ -11,7 +11,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: [".js"]
+    // extensions: [".js"]
   },
   target: 'node',
   // 不打包nodemodules
