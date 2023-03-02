@@ -21,8 +21,17 @@ module.exports = {
       {
         test: /\.js/,
         use: ['babel-loader']
-      }
-    ]
+      },
+      {
+        test: /\.tsx?$/i,
+        use: [
+          {
+            loader: 'ts-loader', //需要安装对应的loader  再次安装typescript 本地-D
+          },
+        ],
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
