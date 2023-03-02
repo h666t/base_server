@@ -15,7 +15,7 @@ module.exports = {
   },
   target: 'node',
   // 不打包nodemodules
-  externals: _externals(),
+//   externals: _externals(),
   context: __dirname,
   module: {
     rules: [
