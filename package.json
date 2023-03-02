@@ -1,0 +1,23 @@
+{
+  "name": "base_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "h666t <1845720928@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/koa": "^2.13.5",
+    "@types/node": "^18.14.4",
+    "@types/sequelize": "^4.28.14",
+    "@types/sqlite3": "^3.1.8",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "koa": "^2.14.1",
+    "sequelize": "^6.29.0",
+    "sqlite3": "^5.1.4"
+  },
+  "scripts": {
+    "dev": "tsnd ./src/index.ts"
+  }
+}
