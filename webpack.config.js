@@ -1,31 +1,31 @@
 const path = require('path');
-const webpack = require('webpack');
-const _externals = require('externals-dependencies')
-  
+const nodeExternals = require('webpack-node-externals');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
-  entry: {
-    index: "./src/index.ts"
-  },
+  // mode: process.env.NODE_ENV == 'production' ? 'production' : 'development',
+  mode: 'production',
+  entry: './src/index.ts',
+  target: 'node',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].js'
+    path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    // extensions: [".js"]
+    extensions: ['.ts', '.js', 'json'],
   },
-  target: 'node',
-  // 不打包nodemodules
-//   externals: _externals(),
-  context: __dirname,
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: ['ts-loader'],
+        exclude: ['/node_modules/'],
+      },
     ],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-  ]
-}
+  node: {
+    __dirname: false,
+  },
+  externals: [nodeExternals()],
+  devtool: 'source-map',
+  plugins: [new CleanWebpackPlugin()],
+};
