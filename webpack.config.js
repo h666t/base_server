@@ -7,36 +7,24 @@ module.exports = {
     index: "./src/index.ts"
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: '[name].js'
   },
   resolve: {
     extensions: [".js"]
   },
   target: 'node',
-  externals: _externals(),
+  // 不打包nodemodules
+  // externals: _externals(),
   context: __dirname,
   module: {
     rules: [
-      {
-        test: /\.js/,
-        use: ['babel-loader']
-      },
-      {
-        test: /\.tsx?$/i,
-        use: [
-          {
-            loader: 'ts-loader', //需要安装对应的loader  再次安装typescript 本地-D
-          },
-        ],
-        exclude: /node_modules/,
-      },
     ],
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"development"'
+        NODE_ENV: '"production"'
       }
     }),
   ]
