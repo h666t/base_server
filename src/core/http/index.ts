@@ -11,7 +11,9 @@ const ipRequestCountHash: IpRequestCountHash = {};
 export const handleIP = (ip: string): boolean => {
         let now = Date.now()
         if(ipRequestCountHash[ip]){
-            if(now - ipRequestCountHash[ip].timeStamp > 1000){
+            if(ipRequestCountHash[ip].count > custom_config.http.mostRequestTimeInOneSecound){
+                ipRequestCountHash[ip].count += 1;
+            } else if(now - ipRequestCountHash[ip].timeStamp > 1000){
                 ipRequestCountHash[ip] = {
                     count: 1,
                     timeStamp: now
