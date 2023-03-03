@@ -1,50 +1,15 @@
 import Koa from "koa";
-import {Sequelize, DataTypes} from "sequelize";
-import sqlite3 from "sqlite3";
+import knex from "knex";
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './database.sqlite',
-  dialectModule: sqlite3,
-  dialectOptions: {
-    // Your sqlite3 options here
-    // for instance, this is how you can configure the database opening mode:
-    // mode: SQLite.OPEN_READWRITE | SQLite.OPEN_CREATE | SQLite.OPEN_FULLMUTEX,
-  },
-});
-
-try {
-  (async () => {
-      await sequelize.authenticate();
-      console.log('Connection has been established successfully.');    
-  })()
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
-
-const User = sequelize.define('User', {
-  // 在这里定义模型属性
-  firstName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  lastName: {
-    type: DataTypes.STRING
-    // allowNull 默认为 true
+const knexClient = knex({
+  client: 'sqlite3', // or 'better-sqlite3'
+  connection: {
+    filename: "./mydb.sqlite"
   }
-}, {
-  tableName: 'members'
-  // 这是其他模型参数
 });
-User.sync()
-// .then(async ()=>{
-//   const jane = User.build({ firstName: "Jane" });
-//   (async ()=>{
-//     await jane.save();
-//   })();
-//   console.log('Jane 已保存到数据库!');
-  
-// });
+
+console.log(knexClient);
+
 
 const app = new Koa();
 app.use(async (ctx)=>{

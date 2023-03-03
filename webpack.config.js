@@ -31,8 +31,6 @@ module.exports = {
   externalsPresets:{ node: true },
   // externals: [nodeExternals()],
   externals: {
-    'sequelize':"require('sequelize')",
-    'sqlite3':"require('sqlite3')",
   },
   devtool: 'source-map',
   plugins: [new CleanWebpackPlugin()],
