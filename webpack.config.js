@@ -6,7 +6,6 @@ module.exports = {
   // mode: process.env.NODE_ENV == 'production' ? 'production' : 'development',
   mode: 'production',
   entry: './src/index.ts',
-  target: 'node',
   output: {
     path: path.resolve(__dirname, 'dist')
   },
@@ -20,12 +19,21 @@ module.exports = {
         use: ['ts-loader'],
         exclude: ['/node_modules/'],
       },
+      {
+        test: /\.html$/,
+        use: "html-loader"
+    },
     ],
   },
   node: {
     __dirname: false,
   },
-  externals: [nodeExternals()],
+  externalsPresets:{ node: true },
+  // externals: [nodeExternals()],
+  externals: {
+    'sequelize':"require('sequelize')",
+    'sqlite3':"require('sqlite3')",
+  },
   devtool: 'source-map',
   plugins: [new CleanWebpackPlugin()],
 };

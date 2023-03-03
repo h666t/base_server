@@ -1,9 +1,16 @@
 import Koa from "koa";
 import {Sequelize, DataTypes} from "sequelize";
+import sqlite3 from "sqlite3";
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: './database.sqlite'
+  storage: './database.sqlite',
+  dialectModule: sqlite3,
+  dialectOptions: {
+    // Your sqlite3 options here
+    // for instance, this is how you can configure the database opening mode:
+    // mode: SQLite.OPEN_READWRITE | SQLite.OPEN_CREATE | SQLite.OPEN_FULLMUTEX,
+  },
 });
 
 try {
