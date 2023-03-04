@@ -29,7 +29,7 @@ module.exports = {
     ],
   },
   node: {
-    __dirname: false,
+    __dirname: true,
   },
   externalsPresets:{ node: true },
   // externals: [nodeExternals()],
