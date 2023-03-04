@@ -7,7 +7,8 @@ module.exports = {
   mode: 'production',
   entry: './src/index.ts',
   output: {
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '../', // 提示引用路径不对，那么就加上这个
   },
   resolve: {
     extensions: ['.ts', '.js', 'json'],
