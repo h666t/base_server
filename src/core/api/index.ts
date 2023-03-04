@@ -10,7 +10,6 @@ router.prefix("/api");
 const prepareApiFile = async (filePath: string) => {
     
     let files = fs.readdirSync(filePath);
-    console.log(files);
     
     for(let i = 0; i < files.length; i++){
         const singleFilePath = path.resolve(__dirname, path.join(filePath, files[i]));
