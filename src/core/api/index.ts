@@ -3,7 +3,7 @@ import fs from 'fs';
 import Router from "koa-router";
 
 const apiPathList: string[] = [];
-const apiFilePath = path.resolve(__dirname,'@/api');
+const apiFilePath = '../../api';
 const router = new Router();
 router.prefix("/api");
 
