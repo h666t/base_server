@@ -4,6 +4,7 @@ import Router from "koa-router";
 
 const apiPathList: string[] = [];
 const apiFilePath = path.resolve(__dirname, "../../api");
+console.log(apiFilePath)
 const router = new Router();
 router.prefix("/api");
 
