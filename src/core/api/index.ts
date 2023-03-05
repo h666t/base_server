@@ -13,6 +13,7 @@ const prepareApiFile = async (filePath: string) => {
     
     for(let i = 0; i < files.length; i++){
         const singleFilePath = path.resolve(__dirname, path.join(filePath, files[i]));
+        console.log(singleFilePath)
         const stats = fs.statSync(singleFilePath);
         const isFile = stats.isFile();
         const isDir = stats.isDirectory();
