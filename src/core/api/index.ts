@@ -19,8 +19,6 @@ const prepareApiFile = async (filePath: string) => {
         if(isFile && apiPathList.indexOf(singleFilePath) === -1){
             let apiObj = await import(singleFilePath);
             if(apiObj.default && Object.keys(apiObj.default)){
-                console.log(apiObj);
-                
                 Object.keys(apiObj.default).forEach((apiMethodName)=>{
                     let method = apiMethodName.split("/")[0];
                     let apiName = apiMethodName.split("/")[1];
@@ -38,7 +36,7 @@ const prepareApiFile = async (filePath: string) => {
                 })
             }
         } else if(isDir){
-            prepareApiFile(singleFilePath);
+            await prepareApiFile(singleFilePath);
         };
     };
     return;
