@@ -1,7 +1,7 @@
 import Koa from "koa";
 import knex from "knex";
 import {handleIP} from "./core/http/index";
-import initAPI from "./core/api";
+import initAPI from "./core/api/index";
 
 const knexClient = knex({
   client: 'sqlite3', // or 'better-sqlite3'
