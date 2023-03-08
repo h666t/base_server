@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var koa_1 = __importDefault(require("koa"));
 var knex_1 = __importDefault(require("knex"));
+var koa_body_1 = __importDefault(require("koa-body"));
 var index_1 = require("./core/http/index");
 var index_2 = __importDefault(require("./core/api/index"));
 var knexClient = knex_1.default({
@@ -50,11 +51,15 @@ var knexClient = knex_1.default({
     }
 });
 var app = new koa_1.default();
+app.use(koa_body_1.default());
 app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
     var isCanContinue;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                ctx.set('Access-Control-Allow-Origin', '*');
+                ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+                ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
                 isCanContinue = index_1.handleIP(ctx.request.ip);
                 if (!isCanContinue) {
                     ctx.status = 400;
@@ -88,6 +93,7 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
                 // methodNotAllowed: () => '不支持的请求方式'
                 }));
                 app.listen(3000);
+                console.log('开始监听3000端口');
                 return [2 /*return*/];
         }
     });

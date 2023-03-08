@@ -89,15 +89,30 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                     Object.keys(apiObj_1.default).forEach(function (apiMethodName) {
                                         var method = apiMethodName.split("/")[0];
                                         var apiName = apiMethodName.split("/")[1];
+                                        // TODO 设置 headers
                                         if (method == 'get') {
                                             console.log("start route get: /api/" + apiName);
                                             router.get("/" + apiName, function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
-                                                return __generator(this, function (_a) {
-                                                    switch (_a.label) {
-                                                        case 0: return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx)];
+                                                var _a, error_1;
+                                                return __generator(this, function (_b) {
+                                                    switch (_b.label) {
+                                                        case 0:
+                                                            console.log(ctx.request.body);
+                                                            _b.label = 1;
                                                         case 1:
-                                                            _a.sent();
-                                                            return [2 /*return*/];
+                                                            _b.trys.push([1, 3, , 4]);
+                                                            ctx.response.status = 200;
+                                                            _a = ctx.response;
+                                                            return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx)];
+                                                        case 2:
+                                                            _a.body = (_b.sent()) || '';
+                                                            return [3 /*break*/, 4];
+                                                        case 3:
+                                                            error_1 = _b.sent();
+                                                            ctx.response.status = 404;
+                                                            ctx.response.body = JSON.stringify(error_1);
+                                                            return [3 /*break*/, 4];
+                                                        case 4: return [2 /*return*/];
                                                     }
                                                 });
                                             }); });
@@ -105,12 +120,26 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                         else if (method = 'post') {
                                             console.log("start route post: /api/" + apiName);
                                             router.post("/" + apiName, function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
-                                                return __generator(this, function (_a) {
-                                                    switch (_a.label) {
-                                                        case 0: return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx)];
+                                                var _a, error_2;
+                                                return __generator(this, function (_b) {
+                                                    switch (_b.label) {
+                                                        case 0:
+                                                            console.log(ctx.request.body);
+                                                            _b.label = 1;
                                                         case 1:
-                                                            _a.sent();
-                                                            return [2 /*return*/];
+                                                            _b.trys.push([1, 3, , 4]);
+                                                            ctx.response.status = 200;
+                                                            _a = ctx.response;
+                                                            return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx)];
+                                                        case 2:
+                                                            _a.body = (_b.sent()) || '';
+                                                            return [3 /*break*/, 4];
+                                                        case 3:
+                                                            error_2 = _b.sent();
+                                                            ctx.response.status = 404;
+                                                            ctx.response.body = JSON.stringify(error_2);
+                                                            return [3 /*break*/, 4];
+                                                        case 4: return [2 /*return*/];
                                                     }
                                                 });
                                             }); });

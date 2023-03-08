@@ -40,8 +40,7 @@ exports.default = {
     "get/fn2": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             console.log('fn2');
-            ctx.message = 'i am fn2';
-            return [2 /*return*/];
+            return [2 /*return*/, { msg: 'ok;i am fn2' }];
         });
     }); }
 };

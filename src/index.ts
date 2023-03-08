@@ -1,5 +1,6 @@
 import Koa from "koa";
 import knex from "knex";
+import koaBody from "koa-body";
 import {handleIP} from "./core/http/index";
 import initAPI from "./core/api/index";
 
@@ -11,8 +12,11 @@ const knexClient = knex({
 });
 
 const app = new Koa();
-
+app.use(koaBody());
 app.use(async (ctx, next)=>{
+  ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   let isCanContinue = handleIP(ctx.request.ip);
   if(!isCanContinue){
     ctx.status = 400;
@@ -40,5 +44,6 @@ app.use(async (ctx, next)=>{
       // methodNotAllowed: () => '不支持的请求方式'
   }));
   app.listen(3000);
+  console.log('开始监听3000端口');
   
 })();

@@ -40,7 +40,9 @@ exports.default = {
     "post/fn": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             console.log('fn');
-            return [2 /*return*/];
+            return [2 /*return*/, {
+                    msg: 'ok; fn'
+                }];
         });
     }); }
 };
