@@ -78,7 +78,6 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                         switch (_b.label) {
                             case 0:
                                 singleFilePath = path_1.default.resolve(__dirname, path_1.default.join(filePath, files[i]));
-                                console.log(singleFilePath);
                                 stats = fs_1.default.statSync(singleFilePath);
                                 isFile = stats.isFile();
                                 isDir = stats.isDirectory();
