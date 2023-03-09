@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -50,11 +54,11 @@ var handleIP = function (ip) {
     }
     ;
     if (ipRequestCountHash[ip].count > custom_config.http.mostRequestTimeInOneSecound) {
-        console.log(dayjs_1.default().format('YYYY-MM-DD HH:mm:ss') + ": reveive request from ip: " + ip + ", overRate: " + ipRequestCountHash[ip].count + ", limit: " + custom_config.http.mostRequestTimeInOneSecound);
+        console.log("".concat((0, dayjs_1.default)().format('YYYY-MM-DD HH:mm:ss'), ": reveive request from ip: ").concat(ip, ", overRate: ").concat(ipRequestCountHash[ip].count, ", limit: ").concat(custom_config.http.mostRequestTimeInOneSecound));
         return false;
     }
     else {
-        console.log(dayjs_1.default().format('YYYY-MM-DD HH:mm:ss') + ": reveive request from ip: " + ip + ", count: " + ipRequestCountHash[ip].count);
+        console.log("".concat((0, dayjs_1.default)().format('YYYY-MM-DD HH:mm:ss'), ": reveive request from ip: ").concat(ip, ", count: ").concat(ipRequestCountHash[ip].count));
         return true;
     }
 };

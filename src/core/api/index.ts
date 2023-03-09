@@ -25,7 +25,7 @@ const prepareApiFile = async (filePath: string) => {
                     let method = apiMethodName.split("/")[0];
                     let apiName = apiMethodName.split("/")[1];
                     // TODO 设置 headers
-                    if(method == 'get'){
+                    if(method === 'get'){
                         console.log(`start route get: /api/${apiName}`);
                         router.get(`/${apiName}`, async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>) => {
                             console.log(ctx.request.body);                            
@@ -37,7 +37,7 @@ const prepareApiFile = async (filePath: string) => {
                                 ctx.response.body = JSON.stringify(error)
                             }
                         });
-                    } else if(method = 'post'){
+                    } else if(method === 'post'){
                         console.log(`start route post: /api/${apiName}`);
                         router.post(`/${apiName}`, async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>) => {
                             console.log(ctx.request.body);

@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -44,14 +44,14 @@ var knex_1 = __importDefault(require("knex"));
 var koa_body_1 = __importDefault(require("koa-body"));
 var index_1 = require("./core/http/index");
 var index_2 = __importDefault(require("./core/api/index"));
-var knexClient = knex_1.default({
+var knexClient = (0, knex_1.default)({
     client: 'sqlite3',
     connection: {
         filename: "./mydb.sqlite"
     }
 });
 var app = new koa_1.default();
-app.use(koa_body_1.default());
+app.use((0, koa_body_1.default)());
 app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
     var isCanContinue;
     return __generator(this, function (_a) {
@@ -60,7 +60,7 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
                 ctx.set('Access-Control-Allow-Origin', '*');
                 ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
                 ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-                isCanContinue = index_1.handleIP(ctx.request.ip);
+                isCanContinue = (0, index_1.handleIP)(ctx.request.ip);
                 if (!isCanContinue) {
                     ctx.status = 400;
                     ctx.message = 'too many request';
@@ -80,7 +80,7 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
     var router;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, index_2.default()];
+            case 0: return [4 /*yield*/, (0, index_2.default)()];
             case 1:
                 router = _a.sent();
                 // router.get('/a', ()=>{
