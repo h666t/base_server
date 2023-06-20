@@ -1,15 +1,10 @@
 import Koa from "koa";
-import knex from "knex";
 import koaBody from "koa-body";
 import {handleIP} from "./core/http/index";
 import initAPI from "./core/api/index";
+import knex_content from "./library/knex_content/index";
 
-const knexClient = knex({
-  client: 'sqlite3', // or 'better-sqlite3'
-  connection: {
-    filename: "./mydb.sqlite"
-  }
-});
+// knex_content.initKnex();
 
 const app = new Koa();
 app.use(koaBody());

@@ -2,6 +2,7 @@ import path from "path";
 import fs from 'fs';
 import Router from "koa-router";
 import type Koa from 'koa';
+import { log } from "console";
 
 const apiPathList: string[] = [];
 const apiFilePath = path.resolve(__dirname, "../../api");
@@ -33,6 +34,7 @@ const prepareApiFile = async (filePath: string) => {
                                 ctx.response.status = 200;
                                 ctx.response.body = await apiObj.default[apiMethodName](ctx) || '';
                             } catch (error) {
+                                console.error(error);
                                 ctx.response.status = 404;
                                 ctx.response.body = JSON.stringify(error)
                             }
@@ -45,6 +47,7 @@ const prepareApiFile = async (filePath: string) => {
                                 ctx.response.status = 200;
                                 ctx.response.body = await apiObj.default[apiMethodName](ctx) || '';
                             } catch (error) {
+                                console.error(error);
                                 ctx.response.status = 404;
                                 ctx.response.body = JSON.stringify(error);
                             }

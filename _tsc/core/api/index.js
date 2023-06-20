@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -37,7 +33,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+        while (_) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -79,7 +75,6 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                 _loop_1 = function (i) {
                     var singleFilePath, stats, isFile, isDir, apiObj_1;
                     return __generator(this, function (_b) {
-                        var _c;
                         switch (_b.label) {
                             case 0:
                                 singleFilePath = path_1.default.resolve(__dirname, path_1.default.join(filePath, files[i]));
@@ -87,7 +82,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                 isFile = stats.isFile();
                                 isDir = stats.isDirectory();
                                 if (!(isFile && apiPathList.indexOf(singleFilePath) === -1)) return [3 /*break*/, 2];
-                                return [4 /*yield*/, (_c = singleFilePath, Promise.resolve().then(function () { return __importStar(require(_c)); }))];
+                                return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(singleFilePath)); })];
                             case 1:
                                 apiObj_1 = _b.sent();
                                 if (apiObj_1.default && Object.keys(apiObj_1.default)) {
@@ -96,8 +91,8 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                         var apiName = apiMethodName.split("/")[1];
                                         // TODO 设置 headers
                                         if (method === 'get') {
-                                            console.log("start route get: /api/".concat(apiName));
-                                            router.get("/".concat(apiName), function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
+                                            console.log("start route get: /api/" + apiName);
+                                            router.get("/" + apiName, function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
                                                 var _a, error_1;
                                                 return __generator(this, function (_b) {
                                                     switch (_b.label) {
@@ -114,6 +109,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                                             return [3 /*break*/, 4];
                                                         case 3:
                                                             error_1 = _b.sent();
+                                                            console.error(error_1);
                                                             ctx.response.status = 404;
                                                             ctx.response.body = JSON.stringify(error_1);
                                                             return [3 /*break*/, 4];
@@ -123,8 +119,8 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                             }); });
                                         }
                                         else if (method === 'post') {
-                                            console.log("start route post: /api/".concat(apiName));
-                                            router.post("/".concat(apiName), function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
+                                            console.log("start route post: /api/" + apiName);
+                                            router.post("/" + apiName, function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
                                                 var _a, error_2;
                                                 return __generator(this, function (_b) {
                                                     switch (_b.label) {
@@ -141,6 +137,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                                             return [3 /*break*/, 4];
                                                         case 3:
                                                             error_2 = _b.sent();
+                                                            console.error(error_2);
                                                             ctx.response.status = 404;
                                                             ctx.response.body = JSON.stringify(error_2);
                                                             return [3 /*break*/, 4];

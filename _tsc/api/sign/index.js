@@ -35,12 +35,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var index_1 = __importDefault(require("../../library/knex_content/index"));
 exports.default = {
-    "get/fn2": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            console.log('fn2');
-            return [2 /*return*/, { msg: 'ok;i am fn2' }];
+    "post/signup": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
+        var _a, username, password, confirmpassword, user;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = ctx.request.body, username = _a.username, password = _a.password, confirmpassword = _a.confirmpassword;
+                    return [4 /*yield*/, index_1.default.getKnex().where("id", username).from("users")];
+                case 1:
+                    user = _b.sent();
+                    console.log(user);
+                    return [2 /*return*/, {
+                            msg: 'ok; fn'
+                        }];
+            }
         });
     }); }
 };
