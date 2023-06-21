@@ -40,14 +40,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __importDefault(require("../../library/knex_content/index"));
+var index_2 = __importDefault(require("../../library/encrypt/index"));
+var knex_sql = index_1.default.getKnex();
 exports.default = {
     "post/signup": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
-        var _a, username, password, confirmpassword, user;
+        var _a, username, password, user;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = ctx.request.body, username = _a.username, password = _a.password, confirmpassword = _a.confirmpassword;
-                    return [4 /*yield*/, index_1.default.getKnex().where("id", username).from("users")];
+                    _a = ctx.request.body, username = _a.username, password = _a.password;
+                    console.log('p');
+                    console.log(index_2.default.decrypt(password));
+                    return [4 /*yield*/, knex_sql("users").where("id", username)];
                 case 1:
                     user = _b.sent();
                     console.log(user);

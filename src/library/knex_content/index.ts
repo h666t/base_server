@@ -1,24 +1,17 @@
-import knex from "knex";
-let knexClient;
+import knex, { Knex } from "knex";
 
-// const initKnex = () => {
-//     knexClient = knex({
-//       client: 'sqlite3', // or 'better-sqlite3'
-//       connection: {
-//         filename: "../../../data/sqlite3.sqlite"
-//       }
-//     });
-// };
+let knexClient: Knex;
 
 const getKnex = () => {
-  return knex({
-    client: 'sqlite3', // or 'better-sqlite3'
-    connection: {
-      filename: "./data/sqlite3"
-    }
-  })
+  if(!knexClient){
+    knexClient = knex({
+      client: 'sqlite3', // or 'better-sqlite3'
+      connection: {
+        filename: "./data/sqlite3"
+      }
+    });
+  }
+  return knexClient;
 }
 
- 
-
-export default {knexClient, getKnex}
+export default {getKnex}
