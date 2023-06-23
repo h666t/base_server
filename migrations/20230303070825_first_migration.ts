@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
             table.increments('id');
             table.string('name', 255).notNullable();
             table.string('password', 255).notNullable();
-            table.timestamps();
+            table.timestamps(true, true);
             table.boolean("is_removed");
         });
 }

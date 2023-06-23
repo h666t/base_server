@@ -30,6 +30,8 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "@types/async-lock": "^1.4.0",
+    "async-lock": "^1.4.0",
     "dayjs": "^1.11.7",
     "knex": "^2.4.2",
     "koa": "^2.14.1",

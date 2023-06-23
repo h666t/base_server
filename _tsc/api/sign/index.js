@@ -41,23 +41,75 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __importDefault(require("../../library/knex_content/index"));
 var index_2 = __importDefault(require("../../library/encrypt/index"));
+var async_lock_1 = __importDefault(require("async-lock"));
 var knex_sql = index_1.default.getKnex();
 exports.default = {
     "post/signup": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
-        var _a, username, password, user;
+        var lock, _a, username, password;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    lock = new async_lock_1.default();
+                    _a = ctx.request.body, username = _a.username, password = _a.password;
+                    return [4 /*yield*/, lock.acquire("user_sign_up_" + username, function () {
+                            return __awaiter(this, void 0, void 0, function () {
+                                var user_list;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, knex_sql("users").where("id", username)];
+                                        case 1:
+                                            user_list = _a.sent();
+                                            if (!(user_list && user_list.length)) return [3 /*break*/, 2];
+                                            throw new Error("用户名已存在");
+                                        case 2: return [4 /*yield*/, knex_sql("users").insert({
+                                                name: username,
+                                                password: password
+                                            })];
+                                        case 3: return [2 /*return*/, _a.sent()];
+                                    }
+                                });
+                            });
+                        }, {
+                            timeout: 5000
+                        })];
+                case 1: return [2 /*return*/, _b.sent()];
+            }
+        });
+    }); },
+    "post/signin": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
+        var _a, username, password, user_list, is_can_signin, password_in_data_base;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _a = ctx.request.body, username = _a.username, password = _a.password;
-                    console.log('p');
-                    console.log(index_2.default.decrypt(password));
-                    return [4 /*yield*/, knex_sql("users").where("id", username)];
+                    return [4 /*yield*/, knex_sql("users").where({
+                            "name": username,
+                        })];
                 case 1:
-                    user = _b.sent();
-                    console.log(user);
-                    return [2 /*return*/, {
-                            msg: 'ok; fn'
-                        }];
+                    user_list = _b.sent();
+                    is_can_signin = false;
+                    if (!user_list.length) {
+                        is_can_signin = false;
+                    }
+                    else {
+                        password_in_data_base = index_2.default.decrypt(user_list[0].password);
+                        password = index_2.default.decrypt(password);
+                        if (password_in_data_base === password) {
+                            is_can_signin = true;
+                        }
+                        else {
+                            is_can_signin = false;
+                        }
+                    }
+                    ;
+                    if (is_can_signin) {
+                        return [2 /*return*/, user_list[0]];
+                    }
+                    else {
+                        throw new Error("请检查用户名或密码");
+                    }
+                    ;
+                    return [2 /*return*/];
             }
         });
     }); }

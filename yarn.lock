@@ -135,6 +135,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/async-lock@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.npmmirror.com/@types/async-lock/-/async-lock-1.4.0.tgz#e7d555d037f93e911d54000acb626e783ff9023a"
+  integrity sha512-2+rYSaWrpdbQG3SA0LmMT6YxWLrI81AqpMlSkw3QtFc2HGDufkweQSn30Eiev7x9LL0oyFrBqk1PXOnB9IEgKg==
+
 "@types/bluebird@*":
   version "3.5.38"
   resolved "https://registry.npmmirror.com/@types/bluebird/-/bluebird-3.5.38.tgz"
@@ -776,6 +781,11 @@ asn1@^0.2.4:
   integrity sha512-ix/FxPn0MDjeyJ7i/yoHGFt/EX6LyNbxSEhPPXODPL+KB0VPk86UYfL0lMdy+KCnv+fmvIzySwaK5COwqVbWTQ==
   dependencies:
     safer-buffer "~2.1.0"
+
+async-lock@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npmmirror.com/async-lock/-/async-lock-1.4.0.tgz#c8b6630eff68fbbdd8a5b6eb763dac3bfbb8bf02"
+  integrity sha512-coglx5yIWuetakm3/1dsX9hxCNox22h7+V80RQOu2XUUMidtArxKoZoOtHUPuR84SycKTXzgGzAUR5hJxujyJQ==
 
 babel-core@^7.0.0-alpha.20:
   version "7.0.0-bridge.0"
