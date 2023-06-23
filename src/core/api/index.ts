@@ -2,7 +2,6 @@ import path from "path";
 import fs from 'fs';
 import Router from "koa-router";
 import type Koa from 'koa';
-import { log } from "console";
 
 const apiPathList: string[] = [];
 const apiFilePath = path.resolve(__dirname, "../../api");
@@ -33,10 +32,10 @@ const prepareApiFile = async (filePath: string) => {
                             try {
                                 ctx.response.status = 200;
                                 ctx.response.body = await apiObj.default[apiMethodName](ctx) || '';
-                            } catch (error) {
+                            } catch (error: any) {
                                 console.error(error);
                                 ctx.response.status = 404;
-                                ctx.response.body = JSON.stringify(error)
+                                ctx.response.message = error.message;
                             }
                         });
                     } else if(method === 'post'){
@@ -46,10 +45,9 @@ const prepareApiFile = async (filePath: string) => {
                             try {
                                 ctx.response.status = 200;
                                 ctx.response.body = await apiObj.default[apiMethodName](ctx) || '';
-                            } catch (error) {
-                                console.error(error);
+                            } catch (error: any) {
                                 ctx.response.status = 404;
-                                ctx.response.body = JSON.stringify(error);
+                                ctx.response.message = error.message;
                             }
                         });
                     }

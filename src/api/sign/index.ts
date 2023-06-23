@@ -11,7 +11,7 @@ export default {
         return await lock.acquire(`user_sign_up_${username}`, async function() {
             let user_list = await knex_sql("users").where("id", username);
             if(user_list && user_list.length){
-                throw new Error("用户名已存在");
+                throw new Error("user is exist");
             } else {
                 return await knex_sql("users").insert({
                     name: username,
@@ -44,7 +44,7 @@ export default {
         if(is_can_signin){
             return user_list[0];
         } else {
-            throw new Error("请检查用户名或密码");
+            throw new Error("please check user name and password");
         };
 
     }

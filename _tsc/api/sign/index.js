@@ -60,7 +60,7 @@ exports.default = {
                                         case 1:
                                             user_list = _a.sent();
                                             if (!(user_list && user_list.length)) return [3 /*break*/, 2];
-                                            throw new Error("用户名已存在");
+                                            throw new Error("user is exist");
                                         case 2: return [4 /*yield*/, knex_sql("users").insert({
                                                 name: username,
                                                 password: password
@@ -106,7 +106,7 @@ exports.default = {
                         return [2 /*return*/, user_list[0]];
                     }
                     else {
-                        throw new Error("请检查用户名或密码");
+                        throw new Error("please check user name and password");
                     }
                     ;
                     return [2 /*return*/];

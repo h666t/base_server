@@ -111,7 +111,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                                             error_1 = _b.sent();
                                                             console.error(error_1);
                                                             ctx.response.status = 404;
-                                                            ctx.response.body = JSON.stringify(error_1);
+                                                            ctx.response.message = error_1.message;
                                                             return [3 /*break*/, 4];
                                                         case 4: return [2 /*return*/];
                                                     }
@@ -137,9 +137,8 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                                             return [3 /*break*/, 4];
                                                         case 3:
                                                             error_2 = _b.sent();
-                                                            console.error(error_2);
                                                             ctx.response.status = 404;
-                                                            ctx.response.body = JSON.stringify(error_2);
+                                                            ctx.response.message = error_2.message;
                                                             return [3 /*break*/, 4];
                                                         case 4: return [2 /*return*/];
                                                     }
