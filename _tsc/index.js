@@ -43,15 +43,28 @@ var koa_1 = __importDefault(require("koa"));
 var koa_body_1 = __importDefault(require("koa-body"));
 var index_1 = require("./core/http/index");
 var index_2 = __importDefault(require("./core/api/index"));
-// knex_content.initKnex();
+var koa_session_1 = __importDefault(require("koa-session"));
+var custom_config_json_1 = __importDefault(require("./custom_config.json"));
 var app = new koa_1.default();
 app.use(koa_body_1.default());
+app.keys = [custom_config_json_1.default.encrypt.privatekey];
+app.use(koa_session_1.default({
+    maxAge: (24 * 60 * 60 * 1000) * 365,
+    autoCommit: true,
+    overwrite: true,
+    httpOnly: true,
+    signed: true,
+    renew: false,
+    secure: false // https
+}, app));
 app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
     var isCanContinue;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                ctx.set('Access-Control-Allow-Origin', '*');
+                ctx.set("Access-Control-Allow-Credentials", "true");
+                // ctx.set('Access-Control-Allow-Origin', '*');
+                ctx.set('Access-Control-Allow-Origin', custom_config_json_1.default.http.allow_cros_url);
                 ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
                 ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
                 isCanContinue = index_1.handleIP(ctx.request.ip);
@@ -60,11 +73,8 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
                     ctx.message = 'too many request';
                     return [2 /*return*/];
                 }
-                console.log('receive message');
-                // ctx.body = 'hello world';
                 return [4 /*yield*/, next()];
             case 1:
-                // ctx.body = 'hello world';
                 _a.sent();
                 return [2 /*return*/];
         }

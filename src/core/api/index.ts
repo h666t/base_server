@@ -27,11 +27,11 @@ const prepareApiFile = async (filePath: string) => {
                     // TODO 设置 headers
                     if(method === 'get'){
                         console.log(`start route get: /api/${apiName}`);
-                        router.get(`/${apiName}`, async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>) => {
-                            console.log(ctx.request.body);                            
+                        router.get(`/${apiName}`, async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>, next) => {
+                            console.log(ctx.request.body);                      
                             try {
                                 ctx.response.status = 200;
-                                ctx.response.body = await apiObj.default[apiMethodName](ctx) || '';
+                                ctx.response.body = await apiObj.default[apiMethodName](ctx, next) || '';
                             } catch (error: any) {
                                 console.error(error);
                                 ctx.response.status = 404;
@@ -40,12 +40,13 @@ const prepareApiFile = async (filePath: string) => {
                         });
                     } else if(method === 'post'){
                         console.log(`start route post: /api/${apiName}`);
-                        router.post(`/${apiName}`, async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>) => {
+                        router.post(`/${apiName}`, async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>, next) => {
                             console.log(ctx.request.body);
                             try {
                                 ctx.response.status = 200;
-                                ctx.response.body = await apiObj.default[apiMethodName](ctx) || '';
+                                ctx.response.body = await apiObj.default[apiMethodName](ctx, next) || '';
                             } catch (error: any) {
+                                console.error(error);
                                 ctx.response.status = 404;
                                 ctx.response.message = error.message;
                             }

@@ -103,6 +103,7 @@ exports.default = {
                     }
                     ;
                     if (is_can_signin) {
+                        ctx.session.current_user = user_list[0];
                         return [2 /*return*/, user_list[0]];
                     }
                     else {
@@ -111,6 +112,19 @@ exports.default = {
                     ;
                     return [2 /*return*/];
             }
+        });
+    }); },
+    "get/getIsLogin": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            if (ctx.session && ctx.session.current_user) {
+                console.log(ctx.session);
+                console.log(ctx.session.current_user);
+                return [2 /*return*/, ctx.session.current_user];
+            }
+            else {
+                throw new Error("auto login failed");
+            }
+            return [2 /*return*/];
         });
     }); }
 };

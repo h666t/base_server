@@ -2,14 +2,25 @@ import Koa from "koa";
 import koaBody from "koa-body";
 import {handleIP} from "./core/http/index";
 import initAPI from "./core/api/index";
-import knex_content from "./library/knex_content/index";
-
-// knex_content.initKnex();
+import session from "koa-session";
+import custom_config from "./custom_config.json";
 
 const app = new Koa();
 app.use(koaBody());
+app.keys = [custom_config.encrypt.privatekey];
+app.use(session({
+  maxAge: (24*60*60*1000)*365,
+  autoCommit: true,
+  overwrite: true,
+  httpOnly: true,
+  signed: true,
+  renew: false, 
+  secure: false // https
+},app));
 app.use(async (ctx, next)=>{
-  ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set("Access-Control-Allow-Credentials", "true");
+  // ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set('Access-Control-Allow-Origin', custom_config.http.allow_cros_url);
   ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   let isCanContinue = handleIP(ctx.request.ip);
@@ -18,9 +29,6 @@ app.use(async (ctx, next)=>{
     ctx.message = 'too many request';
     return;
   }
-  
-  console.log('receive message');
-  // ctx.body = 'hello world';
   await next()
 });
 

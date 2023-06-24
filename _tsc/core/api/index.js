@@ -92,7 +92,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                         // TODO 设置 headers
                                         if (method === 'get') {
                                             console.log("start route get: /api/" + apiName);
-                                            router.get("/" + apiName, function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
+                                            router.get("/" + apiName, function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
                                                 var _a, error_1;
                                                 return __generator(this, function (_b) {
                                                     switch (_b.label) {
@@ -103,7 +103,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                                             _b.trys.push([1, 3, , 4]);
                                                             ctx.response.status = 200;
                                                             _a = ctx.response;
-                                                            return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx)];
+                                                            return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx, next)];
                                                         case 2:
                                                             _a.body = (_b.sent()) || '';
                                                             return [3 /*break*/, 4];
@@ -120,7 +120,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                         }
                                         else if (method === 'post') {
                                             console.log("start route post: /api/" + apiName);
-                                            router.post("/" + apiName, function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
+                                            router.post("/" + apiName, function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
                                                 var _a, error_2;
                                                 return __generator(this, function (_b) {
                                                     switch (_b.label) {
@@ -131,12 +131,13 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                                             _b.trys.push([1, 3, , 4]);
                                                             ctx.response.status = 200;
                                                             _a = ctx.response;
-                                                            return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx)];
+                                                            return [4 /*yield*/, apiObj_1.default[apiMethodName](ctx, next)];
                                                         case 2:
                                                             _a.body = (_b.sent()) || '';
                                                             return [3 /*break*/, 4];
                                                         case 3:
                                                             error_2 = _b.sent();
+                                                            console.error(error_2);
                                                             ctx.response.status = 404;
                                                             ctx.response.message = error_2.message;
                                                             return [3 /*break*/, 4];

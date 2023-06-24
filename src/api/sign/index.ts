@@ -27,7 +27,6 @@ export default {
         let user_list = await knex_sql("users").where({
             "name": username,
         });
-        
         let is_can_signin = false;
         if(!user_list.length){
             is_can_signin = false;
@@ -42,11 +41,20 @@ export default {
         };
         
         if(is_can_signin){
+            ctx.session!.current_user = user_list[0];
             return user_list[0];
         } else {
             throw new Error("please check user name and password");
         };
-
+    },
+    "get/getIsLogin": async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>, next: Koa.Next) =>{
+        if(ctx.session && ctx.session.current_user){
+            console.log(ctx.session);
+            console.log(ctx.session.current_user);
+            return ctx.session.current_user;
+        } else {
+            throw new Error("auto login failed")
+        }
     }
         
 }
