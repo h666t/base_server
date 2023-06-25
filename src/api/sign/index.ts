@@ -49,12 +49,13 @@ export default {
     },
     "get/getIsLogin": async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>, next: Koa.Next) =>{
         if(ctx.session && ctx.session.current_user){
-            console.log(ctx.session);
-            console.log(ctx.session.current_user);
             return ctx.session.current_user;
         } else {
             throw new Error("auto login failed")
         }
-    }
+    },
+    "get/signout": async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>, next: Koa.Next) =>{
+        ctx.session = null;
+    }, 
         
 }

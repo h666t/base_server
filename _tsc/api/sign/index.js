@@ -117,8 +117,6 @@ exports.default = {
     "get/getIsLogin": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             if (ctx.session && ctx.session.current_user) {
-                console.log(ctx.session);
-                console.log(ctx.session.current_user);
                 return [2 /*return*/, ctx.session.current_user];
             }
             else {
@@ -126,5 +124,11 @@ exports.default = {
             }
             return [2 /*return*/];
         });
-    }); }
+    }); },
+    "get/signout": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            ctx.session = null;
+            return [2 /*return*/];
+        });
+    }); },
 };
