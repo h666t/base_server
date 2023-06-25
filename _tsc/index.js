@@ -69,8 +69,8 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
         switch (_a.label) {
             case 0:
                 ctx.set("Access-Control-Allow-Credentials", "true");
-                // ctx.set('Access-Control-Allow-Origin', '*');
-                ctx.set('Access-Control-Allow-Origin', custom_config_json_1.default.http.allow_cros_url);
+                ctx.set('Access-Control-Allow-Origin', '*');
+                // ctx.set('Access-Control-Allow-Origin', custom_config.http.allow_cros_url);
                 ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
                 ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
                 isCanContinue = index_1.handleIP(ctx.request.ip);
