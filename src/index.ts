@@ -25,7 +25,7 @@ app.use(session({
   secure: false // https
 },app));
 app.use(async (ctx, next)=>{
-  ctx.set("Access-Control-Allow-Credentials", "true");
+  // ctx.set("Access-Control-Allow-Credentials", "true");
   ctx.set('Access-Control-Allow-Origin', '*');
   // ctx.set('Access-Control-Allow-Origin', custom_config.http.allow_cros_url);
   ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
