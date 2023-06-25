@@ -45,7 +45,9 @@ var index_1 = require("./core/http/index");
 var index_2 = __importDefault(require("./core/api/index"));
 var koa_session_1 = __importDefault(require("koa-session"));
 var custom_config_json_1 = __importDefault(require("./custom_config.json"));
+var koa_static_1 = __importDefault(require("koa-static"));
 var app = new koa_1.default();
+app.use(koa_static_1.default('../../frontend-website/dist/index.html'));
 app.use(koa_body_1.default());
 app.keys = [custom_config_json_1.default.encrypt.privatekey];
 app.use(koa_session_1.default({

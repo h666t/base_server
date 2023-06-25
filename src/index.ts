@@ -7,6 +7,7 @@ import custom_config from "./custom_config.json";
 import serve from "koa-static";
 
 const app = new Koa();
+app.use(serve('../../frontend-website/dist/index.html'));
 app.use(koaBody());
 app.keys = [custom_config.encrypt.privatekey];
 app.use(session({
