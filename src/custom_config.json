@@ -1,7 +1,7 @@
 {
     "http": {
         "mostRequestTimeInOneSecound": 100,
-        "allow_cros_url": "http://127.0.0.1:5173"
+        "allow_cros_url": "http://47.92.207.216:5173"
     },
     "encrypt": {
         "privatekey": "-----BEGIN PRIVATE KEY-----\nMIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAubyJtWlr2Ls0ZDAW\nD+NU9ZfVv3Pm8P2lz0BanIv16zkOPCnZDI2iI0xmlMyAyjvW/P4J626VT7Qh4/io\nZNPTIwIDAQABAkBZ7v2q9pm+vp6WqGX2WXgI1vUrl75KEDdaC+oUBP0VYJ7h1CSe\n3MvEdo/7WVyPoNHqD0amrXB3MoHdXlMp1QkhAiEA3K3fJ1TcVu6lMmFfiGjs0l0p\nK72xIt0P7jCL8Z9SibMCIQDXduuqbLYrXrakIrMJGo4mAgJYfNCpiMtiZ07cUMT4\n0QIgDf2sBzdXHN/Wc2I/B0v3r8KeSJqnL1mql+RWCwSZ3AcCIFHbShkLCAJeD0E4\nNZBl2E80QDPh51whLjOKT/l/bfWhAiEAoeI/lQeOOsFSkyNU2XE6DSFgsZZbyZoW\nFVOF/PTri9M=\n-----END PRIVATE KEY-----"
