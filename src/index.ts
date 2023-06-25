@@ -5,9 +5,14 @@ import initAPI from "./core/api/index";
 import session from "koa-session";
 import custom_config from "./custom_config.json";
 import serve from "koa-static";
+import path from "path";
+import Router from "koa-router";
+let router = new Router();
 
 const app = new Koa();
-app.use(serve('../../frontend-website/dist/index.html'));
+console.log(path.join(__dirname, "../../frontend-website/dist/"));
+
+app.use(serve(path.join(__dirname, "../../frontend-website/dist/")));
 app.use(koaBody());
 app.keys = [custom_config.encrypt.privatekey];
 app.use(session({
