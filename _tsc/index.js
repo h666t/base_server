@@ -87,9 +87,6 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
             case 0: return [4 /*yield*/, index_2.default()];
             case 1:
                 router = _a.sent();
-                // router.get('/a', ()=>{
-                //   console.log('a');
-                // });
                 app.use(router.routes());
                 app.use(router.allowedMethods({
                 // throw: true, // 抛出错误，代替设置响应头状态

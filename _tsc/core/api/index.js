@@ -74,8 +74,8 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                 files = fs_1.default.readdirSync(filePath);
                 _loop_1 = function (i) {
                     var singleFilePath, stats, isFile, isDir, apiObj_1;
-                    return __generator(this, function (_b) {
-                        switch (_b.label) {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
                             case 0:
                                 singleFilePath = path_1.default.resolve(__dirname, path_1.default.join(filePath, files[i]));
                                 stats = fs_1.default.statSync(singleFilePath);
@@ -84,7 +84,7 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                 if (!(isFile && apiPathList.indexOf(singleFilePath) === -1)) return [3 /*break*/, 2];
                                 return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(singleFilePath)); })];
                             case 1:
-                                apiObj_1 = _b.sent();
+                                apiObj_1 = _a.sent();
                                 if (apiObj_1.default && Object.keys(apiObj_1.default)) {
                                     Object.keys(apiObj_1.default).forEach(function (apiMethodName) {
                                         var method = apiMethodName.split("/")[0];
@@ -153,8 +153,8 @@ var prepareApiFile = function (filePath) { return __awaiter(void 0, void 0, void
                                 if (!isDir) return [3 /*break*/, 4];
                                 return [4 /*yield*/, prepareApiFile(singleFilePath)];
                             case 3:
-                                _b.sent();
-                                _b.label = 4;
+                                _a.sent();
+                                _a.label = 4;
                             case 4:
                                 ;
                                 return [2 /*return*/];

@@ -4,6 +4,7 @@ import {handleIP} from "./core/http/index";
 import initAPI from "./core/api/index";
 import session from "koa-session";
 import custom_config from "./custom_config.json";
+import serve from "koa-static";
 
 const app = new Koa();
 app.use(koaBody());
@@ -36,10 +37,7 @@ app.use(async (ctx, next)=>{
 (async ()=>{
   const router = await initAPI();
   
-  // router.get('/a', ()=>{
-  //   console.log('a');
-    
-  // });
+  
   app.use(router.routes());
   app.use(router.allowedMethods({ 
       // throw: true, // 抛出错误，代替设置响应头状态
