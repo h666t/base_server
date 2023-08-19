@@ -47,8 +47,6 @@ var koa_session_1 = __importDefault(require("koa-session"));
 var custom_config_json_1 = __importDefault(require("./custom_config.json"));
 var koa_static_1 = __importDefault(require("koa-static"));
 var path_1 = __importDefault(require("path"));
-var koa_router_1 = __importDefault(require("koa-router"));
-var router = new koa_router_1.default();
 var app = new koa_1.default();
 console.log(path_1.default.join(__dirname, "../../frontend-website/dist/"));
 app.use(koa_static_1.default(path_1.default.join(__dirname, "../../frontend-website/dist/")));
@@ -99,8 +97,8 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
                 // notImplemented: () => '不支持当前请求所需要的功能',
                 // methodNotAllowed: () => '不支持的请求方式'
                 }));
-                app.listen(3000);
-                console.log('开始监听3000端口');
+                app.listen(80);
+                console.log('开始监听80端口');
                 return [2 /*return*/];
         }
     });

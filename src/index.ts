@@ -6,8 +6,6 @@ import session from "koa-session";
 import custom_config from "./custom_config.json";
 import serve from "koa-static";
 import path from "path";
-import Router from "koa-router";
-let router = new Router();
 
 const app = new Koa();
 console.log(path.join(__dirname, "../../frontend-website/dist/"));
@@ -50,7 +48,7 @@ app.use(async (ctx, next)=>{
       // notImplemented: () => '不支持当前请求所需要的功能',
       // methodNotAllowed: () => '不支持的请求方式'
   }));
-  app.listen(3000);
-  console.log('开始监听3000端口');
+  app.listen(80);
+  console.log('开始监听80端口');
   
 })();
