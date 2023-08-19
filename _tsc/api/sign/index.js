@@ -103,8 +103,13 @@ exports.default = {
                     }
                     ;
                     if (is_can_signin) {
-                        ctx.session.current_user = user_list[0];
-                        return [2 /*return*/, user_list[0]];
+                        if (ctx.session) {
+                            ctx.session.current_user = user_list[0];
+                            return [2 /*return*/, user_list[0]];
+                        }
+                        else {
+                            throw new Error("ctx.session is not exist");
+                        }
                     }
                     else {
                         throw new Error("please check user name and password");
