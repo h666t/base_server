@@ -2,13 +2,14 @@ import type Koa from "koa";
 import knex_content from "../../library/knex_content/index";
 import encrypt_lib from "../../library/encrypt/index";
 import AsyncLock from "async-lock";
+const signupLock = new AsyncLock();
 
 const knex_sql = knex_content.getKnex();
 export default {
     "post/signup": async (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext, any>, next: Koa.Next) =>{
-        const lock = new AsyncLock();
+        
         let {username, password} = ctx.request.body;
-        return await lock.acquire(`user_sign_up_${username}`, async function() {
+        return await signupLock.acquire(`user_sign_up_${username}`, async function() {
             let user_list = await knex_sql("users").where("id", username);
             if(user_list && user_list.length){
                 throw new Error("user is exist");

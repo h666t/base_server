@@ -42,16 +42,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __importDefault(require("../../library/knex_content/index"));
 var index_2 = __importDefault(require("../../library/encrypt/index"));
 var async_lock_1 = __importDefault(require("async-lock"));
+var signupLock = new async_lock_1.default();
 var knex_sql = index_1.default.getKnex();
 exports.default = {
     "post/signup": function (ctx, next) { return __awaiter(void 0, void 0, void 0, function () {
-        var lock, _a, username, password;
+        var _a, username, password;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    lock = new async_lock_1.default();
                     _a = ctx.request.body, username = _a.username, password = _a.password;
-                    return [4 /*yield*/, lock.acquire("user_sign_up_" + username, function () {
+                    return [4 /*yield*/, signupLock.acquire("user_sign_up_" + username, function () {
                             return __awaiter(this, void 0, void 0, function () {
                                 var user_list;
                                 return __generator(this, function (_a) {
