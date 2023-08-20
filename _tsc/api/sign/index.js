@@ -56,7 +56,7 @@ exports.default = {
                                 var user_list;
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
-                                        case 0: return [4 /*yield*/, knex_sql("users").where("id", username)];
+                                        case 0: return [4 /*yield*/, knex_sql("users").where("name", username)];
                                         case 1:
                                             user_list = _a.sent();
                                             if (!(user_list && user_list.length)) return [3 /*break*/, 2];

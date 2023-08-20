@@ -10,7 +10,7 @@ export default {
         
         let {username, password} = ctx.request.body;
         return await signupLock.acquire(`user_sign_up_${username}`, async function() {
-            let user_list = await knex_sql("users").where("id", username);
+            let user_list = await knex_sql("users").where("name", username);
             if(user_list && user_list.length){
                 throw new Error("user is exist");
             } else {
