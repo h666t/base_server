@@ -97,8 +97,8 @@ app.use(function (ctx, next) { return __awaiter(void 0, void 0, void 0, function
                 // notImplemented: () => '不支持当前请求所需要的功能',
                 // methodNotAllowed: () => '不支持的请求方式'
                 }));
-                app.listen(3000);
-                console.log('开始监听3000端口');
+                app.listen(80);
+                console.log('开始监听80端口');
                 return [2 /*return*/];
         }
     });
